@@ -229,7 +229,8 @@ class GiftedChat extends React.Component {
    * Returns the height, based on current window size, without taking the keyboard into account.
    */
   getBasicMessagesContainerHeight(composerHeight = this.state.composerHeight) {
-    return this.getMaxHeight() - this.calculateInputToolbarHeight(composerHeight);
+    // return this.getMaxHeight() - this.calculateInputToolbarHeight(composerHeight);
+    return this.getMaxHeight();
   }
 
   /**
@@ -525,7 +526,6 @@ GiftedChat.defaultProps = {
   renderAvatar: undefined,
   showUserAvatar: false,
   onPressAvatar: null,
-  renderUsernameOnMessage: false,
   renderAvatarOnTop: false,
   renderBubble: null,
   renderSystemMessage: null,
@@ -534,7 +534,6 @@ GiftedChat.defaultProps = {
   renderMessageText: null,
   renderMessageImage: null,
   imageProps: {},
-  videoProps: {},
   lightboxProps: {},
   textInputProps: {},
   listViewProps: {},
@@ -580,7 +579,6 @@ GiftedChat.propTypes = {
   renderAvatar: PropTypes.func,
   showUserAvatar: PropTypes.bool,
   onPressAvatar: PropTypes.func,
-  renderUsernameOnMessage: PropTypes.bool,
   renderAvatarOnTop: PropTypes.bool,
   renderBubble: PropTypes.func,
   renderSystemMessage: PropTypes.func,
@@ -589,7 +587,6 @@ GiftedChat.propTypes = {
   renderMessageText: PropTypes.func,
   renderMessageImage: PropTypes.func,
   imageProps: PropTypes.object,
-  videoProps: PropTypes.object,
   lightboxProps: PropTypes.object,
   renderCustomView: PropTypes.func,
   renderDay: PropTypes.func,
