@@ -43,6 +43,16 @@ export default class Message extends React.PureComponent {
     };
   }
 
+  renderBlacklist() {
+    if (this.props.currentMessage.createdAt) {
+      const dayProps = this.getInnerComponentProps();
+      if(this.props.renderBlacklist) {
+        return this.props.renderBlacklist(dayProps);
+      }
+    }
+    return null;
+  }
+
   renderDay() {
     if (this.props.currentMessage.createdAt) {
       const dayProps = this.getInnerComponentProps();
@@ -103,6 +113,7 @@ export default class Message extends React.PureComponent {
             {this.props.position === 'right' ? this.renderAvatar() : null}
           </View>
         )}
+        {this.renderBlacklist()}
       </View>
     );
   }
@@ -111,6 +122,7 @@ export default class Message extends React.PureComponent {
 
 Message.defaultProps = {
   renderAvatar: undefined,
+  renderBlacklist: null,
   renderBubble: null,
   renderDay: null,
   renderSystemMessage: null,
@@ -129,6 +141,7 @@ Message.propTypes = {
   showUserAvatar: PropTypes.bool,
   renderBubble: PropTypes.func,
   renderDay: PropTypes.func,
+  renderBlacklist: PropTypes.func,
   renderSystemMessage: PropTypes.func,
   position: PropTypes.oneOf(['left', 'right']),
   currentMessage: PropTypes.object,
