@@ -8,7 +8,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Animated, Platform, StyleSheet, View } from 'react-native';
+import { Animated, Platform, StyleSheet, View, Text } from 'react-native';
 
 import ActionSheet from '@expo/react-native-action-sheet';
 import moment from 'moment';
@@ -455,7 +455,24 @@ class GiftedChat extends React.Component {
       />
     );
   }
-
+  renderTopImage() {
+    if (this.props.renderTopImage) {
+      return this.props.renderTopImage();
+    }
+    return null;
+  }
+  renderRightImage() {
+    if (this.props.renderRightImage) {
+      return this.props.renderRightImage();
+    }
+    return null;
+  }
+  renderLeftmage() {
+    if (this.props.renderLeftmage) {
+      return this.props.renderLeftmage();
+    }
+    return null;
+  }
   renderChatFooter() {
     if (this.props.renderChatFooter) {
       const footerProps = {
@@ -477,15 +494,18 @@ class GiftedChat extends React.Component {
     if (this.state.isInitialized === true) {
       return (
         <ActionSheet ref={(component) => (this._actionSheetRef = component)}>
-          <View style={styles.container} onLayout={this.onMainViewLayout}>
+          <View style={[styles.container, { backgroundColor: this.props.bgColor, }]} onLayout={this.onMainViewLayout}>
             {this.renderMessages()}
             {this.renderInputToolbar()}
+            {this.renderTopImage()}
+            {this.renderRightImage()}
+            {this.renderLeftmage()}
           </View>
         </ActionSheet>
       );
     }
     return (
-      <View style={styles.container} onLayout={this.onInitialLayoutViewLayout}>
+      <View style={[styles.container, { backgroundColor: this.props.bgColor, }]} onLayout={this.onInitialLayoutViewLayout}>
         {this.renderLoading()}
       </View>
     );
@@ -496,6 +516,7 @@ class GiftedChat extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    overflow: 'hidden',
   },
 });
 
@@ -558,6 +579,10 @@ GiftedChat.defaultProps = {
   maxInputLength: null,
   forceGetKeyboardHeight: false,
   inverted: true,
+  renderTopImage: null,
+  renderRightImage: null,
+  renderLeftmage: null,
+  bgColor: undefined
 };
 
 GiftedChat.propTypes = {
@@ -608,6 +633,10 @@ GiftedChat.propTypes = {
   forceGetKeyboardHeight: PropTypes.bool,
   inverted: PropTypes.bool,
   textInputProps: PropTypes.object,
+  renderTopImage: PropTypes.func,
+  renderRightImage: PropTypes.func,
+  renderLeftmage: PropTypes.func,
+  bgColor: PropTypes.string
 };
 
 export {
