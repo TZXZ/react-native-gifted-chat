@@ -494,18 +494,18 @@ class GiftedChat extends React.Component {
     if (this.state.isInitialized === true) {
       return (
         <ActionSheet ref={(component) => (this._actionSheetRef = component)}>
-          <View style={[styles.container, { backgroundColor: this.props.bgColor, }]} onLayout={this.onMainViewLayout}>
+          <View style={[styles.container,]} onLayout={this.onMainViewLayout}>
             {this.renderMessages()}
             {this.renderInputToolbar()}
-            {this.renderTopImage()}
-            {this.renderRightImage()}
-            {this.renderLeftmage()}
+            {/* {this.renderTopImage()} */}
+            {/* {this.renderRightImage()} */}
+            {/* {this.renderLeftmage()} */}
           </View>
         </ActionSheet>
       );
     }
     return (
-      <View style={[styles.container, { backgroundColor: this.props.bgColor, }]} onLayout={this.onInitialLayoutViewLayout}>
+      <View style={[styles.container,]} onLayout={this.onInitialLayoutViewLayout}>
         {this.renderLoading()}
       </View>
     );
